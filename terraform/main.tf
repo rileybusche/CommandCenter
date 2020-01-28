@@ -16,7 +16,7 @@ resource "aws_instance" "Ticker" {
   user_data                   = "${data.template_file.user_data.rendered}"
 
   tags = {
-    Name = "Discord Bots"
+    Name = "Command Center"
   }
 }
 

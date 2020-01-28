@@ -1,3 +1,3 @@
-output "instance_ips" {
-  value = ["${aws_instance.web.*.public_ip}"]
+output "ip" {
+  value = aws_instance.Ticker[0].public_ip
 }
