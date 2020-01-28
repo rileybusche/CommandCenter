@@ -1,6 +1,7 @@
 #! /bin/bash
 sudo yum update -y
 sudo yum install git -y
+sudo yum python3 -y
 sudo yum python3-pip -y
 sudo python3 -m pip install -U discord.py
 sudo python3 -m pip install apscheduler
