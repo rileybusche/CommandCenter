@@ -24,3 +24,12 @@ resource "aws_key_pair" "command_center" {
   key_name   = "command_center"
   public_key = "${file("command_center.pub")}"
 }
+
+resource "aws_s3_bucket" "credentials" {
+  bucket  = "rb-int-us-east-1-bot-credentials"
+  acl     = "private"
+
+  tags = {
+    Name  = "Bot Credential Storage"
+  }
+}
