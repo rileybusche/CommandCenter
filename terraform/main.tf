@@ -15,6 +15,8 @@ resource "aws_instance" "Ticker" {
   associate_public_ip_address = true
   user_data                   = "${data.template_file.user_data.rendered}"
 
+  iam_instance_profile = "iam-role-command-center"
+
   tags = {
     Name = "Command Center"
   }
