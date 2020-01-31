@@ -25,6 +25,6 @@ cd ShitPostBot
 
 # Start Bots
 sudo nohup python3 /home/ec2-user/TickerBotProd/TickerPriceBot/bot.py &
-sudo nohup pytohn3 /home/ec2-user/ShitPostBot/bot.py &
+sudo nohup python3 /home/ec2-user/ShitPostBot/bot.py &
 
 # Command Center Bot - Coming soon
