@@ -5,6 +5,8 @@ import json
 
 import bot_controls
 
+bot_owner = "LiquidLuck#9488"
+
 with open('/home/ec2-user/creds/creds.json') as file:
     creds = json.load(file)
 
@@ -19,7 +21,7 @@ async def on_message(message):
     channel = message.channel
     msg =  message.content.strip().lower()
 
-    if author == client.user:
+    if author == client.user or author != bot_owner:
         return
     
     if msg == "!metrics":
