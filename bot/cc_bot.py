@@ -25,6 +25,12 @@ async def on_message(message):
         metrics = subprocess.check_output('iostat', shell=True).decode('utf-8')
         await channel.send(f'```fix\n{metrics}```')
 
+    if msg.startswith('!update'):
+        msg_tokens = msg.split(' ')
+        cmd = f'sh /scripts/update.sh {msg_tokens[1]}'
+        os.system(cmd)
+        
+
 @client.event
 async def on_ready():
     global connected_guilds
