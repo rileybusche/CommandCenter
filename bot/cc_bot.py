@@ -3,6 +3,8 @@ import os
 import subprocess
 import json
 
+import bot_controls
+
 with open('/home/ec2-user/creds/creds.json') as file:
     creds = json.load(file)
 
@@ -28,13 +30,13 @@ async def on_message(message):
 
     if msg.startswith('!update'):
         msg_tokens = msg.split(' ')
-        cmd = f'sh ./scripts/update.sh {msg_tokens[1]}'
-        os.system(cmd)
+        bot_controls.update_bot(msg_tokens[1])
         
 
 @client.event
 async def on_ready():
     global connected_guilds
+    bot_controls.start_bots()
     print('Logged in as')
     print(client.user.name)
     print(client.user.id)
