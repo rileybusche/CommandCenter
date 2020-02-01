@@ -20,8 +20,16 @@ async def on_message(message):
         return
     
     if msg == "!metrics":
-        metrics = os.system('echo iostat')
+        metrics = os.system('cat iostat')
         await channel.send(f'```fix\n{metrics}```')
+
+@client.event
+async def on_ready():
+    global connected_guilds
+    print('Logged in as')
+    print(client.user.name)
+    print(client.user.id)
+    print('------')
 
 
 client.run(token)
