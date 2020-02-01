@@ -23,7 +23,8 @@ async def on_message(message):
     if msg == "!metrics":
         # metrics = os.popen('cat iostat').read()
         metrics = subprocess.check_output('iostat', shell=True).decode('utf-8')
-        await channel.send(f'```fix\n{metrics}```')
+        output = "Command Center Metrics\n" + metrics
+        await channel.send(f'```fix\n{output}```')
 
     if msg.startswith('!update'):
         msg_tokens = msg.split(' ')
