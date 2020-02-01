@@ -27,7 +27,7 @@ async def on_message(message):
 
     if msg.startswith('!update'):
         msg_tokens = msg.split(' ')
-        cmd = f'sh /scripts/update.sh {msg_tokens[1]}'
+        cmd = f'sh ./scripts/update.sh {msg_tokens[1]}'
         os.system(cmd)
         
 
