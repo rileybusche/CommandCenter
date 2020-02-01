@@ -20,7 +20,7 @@ async def on_message(message):
         return
     
     if msg == "!metrics":
-        metrics = os.system('cat iostat')
+        metrics = os.popen('cat iostat')
         await channel.send(f'```fix\n{metrics}```')
 
 @client.event
