@@ -1,5 +1,6 @@
 import discord
 import os
+import subprocess
 import json
 
 with open('/home/ec2-user/creds/creds.json') as file:
@@ -20,7 +21,8 @@ async def on_message(message):
         return
     
     if msg == "!metrics":
-        metrics = os.popen('cat iostat').read()
+        # metrics = os.popen('cat iostat').read()
+        metrics = subprocess.check_output('iostat', shell=True)
         await channel.send(f'```fix\n{metrics}```')
 
 @client.event
