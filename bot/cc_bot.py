@@ -7,7 +7,7 @@ import bot_controls
 
 bot_owner = "LiquidLuck#9488"
 
-log_channel = 673205358600388672
+log_channel = client.get_channel(673205358600388672)
 
 with open('/home/ec2-user/creds/creds.json') as file:
     creds = json.load(file)
