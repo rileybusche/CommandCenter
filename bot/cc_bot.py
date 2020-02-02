@@ -7,6 +7,8 @@ import bot_controls
 
 bot_owner = "LiquidLuck#9488"
 
+log_channel = 673205358600388672
+
 with open('/home/ec2-user/creds/creds.json') as file:
     creds = json.load(file)
 
@@ -33,6 +35,7 @@ async def on_message(message):
     if msg.startswith('!update'):
         msg_tokens = msg.split(' ')
         bot_controls.update_bot(msg_tokens[1])
+        await log_channel.send(f'Updating {msg_tokens[1]}')
         
 
 @client.event
