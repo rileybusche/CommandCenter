@@ -23,10 +23,7 @@ async def on_message(message):
     channel = message.channel
     msg =  message.content.strip().lower()
 
-    print(author)
-    print(type(author))
-
-    if author == client.user:
+    if author == client.user or str(author) != bot_owner:
         return
     
     if msg == "!metrics":
