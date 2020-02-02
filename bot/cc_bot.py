@@ -24,6 +24,7 @@ async def on_message(message):
     msg =  message.content.strip().lower()
 
     print(author)
+    print(type(author))
 
     if author == client.user:
         return
