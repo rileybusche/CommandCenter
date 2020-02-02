@@ -36,6 +36,7 @@ async def on_message(message):
     if msg.startswith('!update'):
         msg_tokens = msg.split(' ')
         bot_controls.update_bot(msg_tokens[1])
+        print(log_channel)
         await log_channel.send(f'Updating {msg_tokens[1]}')
         
 
