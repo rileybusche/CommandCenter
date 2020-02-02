@@ -5,6 +5,8 @@ import json
 
 import bot_controls
 
+client = discord.Client()
+
 bot_owner = "LiquidLuck#9488"
 
 log_channel = client.get_channel(673205358600388672)
@@ -14,7 +16,6 @@ with open('/home/ec2-user/creds/creds.json') as file:
 
 token = creds['Credentials']['Command Center']['Token']
 
-client = discord.Client()
 
 @client.event
 async def on_message(message):
