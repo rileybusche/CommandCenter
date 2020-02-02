@@ -3,6 +3,7 @@ import os
 def start_bots():
     os.system('sh ./scripts/start_bots.sh')
     bots = ['tpb', 'spb']
+    print("Starting Bots...")
     for bot in bots:
         update_bot(bot)
 
