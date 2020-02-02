@@ -23,6 +23,8 @@ async def on_message(message):
     channel = message.channel
     msg =  message.content.strip().lower()
 
+    print(author)
+
     if author == client.user:
         return
     
