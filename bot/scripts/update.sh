@@ -24,3 +24,12 @@ then
     sudo kill -9 $PIDS
     sudo nohup python3 cc_bot.py &    
 fi
+elif [ $1 == "db" ]
+then
+    echo "Updating CC"
+    cd /home/ec2-user/DomBot/
+    sudo git pull
+    PIDS=$(echo | pgrep -f "dombot_bot.py")
+    sudo kill -9 $PIDS
+    sudo nohup python3 dombot_bot.py &    
+fi
