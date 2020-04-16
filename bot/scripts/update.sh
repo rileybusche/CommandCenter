@@ -26,7 +26,7 @@ then
 fi
 elif [ $1 == "db" ]
 then
-    echo "Updating CC"
+    echo "Updating DB"
     cd /home/ec2-user/DomBot/
     sudo git pull
     PIDS=$(echo | pgrep -f "dombot_bot.py")
