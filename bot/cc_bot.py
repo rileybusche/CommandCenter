@@ -47,7 +47,7 @@ async def on_message(message):
                         await channel.send(f'```fix\nServer is already running.```')
                     elif instance.state['Name'] == 'stopped':
                         response = instance.start()
-                        await channel.send(f'```fix\n{response}```')
+                        await channel.send(f'```fix\nIP : {instance.public_ip_address}```')
     # Stops the Minecraft EC2 server
     if msg == '!minecraft_stop':
         ec2 = boto3.resource('ec2', region_name='us-east-1')
