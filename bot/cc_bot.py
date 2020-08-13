@@ -44,7 +44,7 @@ async def on_message(message):
             for tag in instance.tags:
                 if tag['Key'] == 'Name' and tag['Value'] == 'Minecraft Server':
                     if instance.state['Name'] == 'running':
-                        await channel.send(f'```fix\nServer is already running.```')
+                        await channel.send(f'```fix\nServer is already running | IP : {instance.public_ip_address}```')
                     elif instance.state['Name'] == 'stopped':
                         response = instance.start()
                         await channel.send(f'```fix\nIP : {instance.public_ip_address}```')
