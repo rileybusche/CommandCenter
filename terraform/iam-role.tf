@@ -42,7 +42,13 @@ resource "aws_iam_policy" "command-center-policy" {
             "Effect": "Allow",
             "Action": "s3:*",
             "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "ec2:*",
+            "Resource": "*"
         }
+
     ]
 }
 EOF
