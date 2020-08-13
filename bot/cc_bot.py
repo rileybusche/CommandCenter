@@ -61,12 +61,18 @@ async def on_message(message):
                         response = instance.stop()
                         await channel.send(f'```fix\n{response}```')
 
+    # Lists out the exisiting instances
     if msg == '!instances':
         ec2 = boto3.resource('ec2', region_name='us-east-1')
         instances = ec2.instances.all()
         output = ''
         for instance in instances:
-            output += f'{instance.instance_id} | {instance.public_ip_address} | {instance.state}\n'
+            if insance.state['Name'] != 'terminated':
+                name = ''
+                for tag in instance.tags:
+                    if tag['Key'] == 'Name':
+                        name = tag['Value']
+                output += f'{name} | {instance.instance_id} | {instance.public_ip_address} | {instance.state['Name']}\n'
         await channel.send(f'```fix\n{output}```')
 
 
