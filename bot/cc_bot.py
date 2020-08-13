@@ -67,7 +67,7 @@ async def on_message(message):
         instances = ec2.instances.all()
         output = ''
         for instance in instances:
-            if insance.state['Name'] != 'terminated':
+            if instance.state['Name'] != 'terminated':
                 name = ''
                 for tag in instance.tags:
                     if tag['Key'] == 'Name':
