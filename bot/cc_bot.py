@@ -3,6 +3,7 @@ import os
 import subprocess
 import json
 import boto3
+import time
 
 import bot_controls
 import server_logging as log
@@ -47,6 +48,7 @@ async def on_message(message):
                         await channel.send(f'```fix\nServer is already running | IP : {instance.public_ip_address}```')
                     elif instance.state['Name'] == 'stopped':
                         response = instance.start()
+                        time.sleep(5)
                         await channel.send(f'```fix\nIP : {instance.public_ip_address}```')
     # Stops the Minecraft EC2 server
     if msg == '!minecraft_stop':
