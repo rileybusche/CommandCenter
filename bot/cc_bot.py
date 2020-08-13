@@ -73,7 +73,7 @@ async def on_message(message):
                 for tag in instance.tags:
                     if tag['Key'] == 'Name':
                         name = tag['Value']
-                output += f'{name} | {instance.instance_id} | {instance.public_ip_address} | {state}\n'
+                output += f'{instance.instance_id} | {name} |  {instance.public_ip_address} | {state}\n'
         await channel.send(f'```fix\n{output}```')
 
 
