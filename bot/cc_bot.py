@@ -48,6 +48,7 @@ async def on_message(message):
                         await channel.send(f'```fix\nServer is already running | IP : {instance.public_ip_address}```')
                     elif instance.state['Name'] == 'stopped':
                         response = instance.start()
+                        log.write_log(f'{response}', client)
                         time.sleep(5)
                         await channel.send(f'```fix\nIP : {instance.public_ip_address}```')
     # Stops the Minecraft EC2 server
@@ -61,7 +62,8 @@ async def on_message(message):
                         await channel.send(f'```fix\nServer is already stopped.```')
                     elif instance.state['Name'] == 'running':
                         response = instance.stop()
-                        await channel.send(f'```fix\n{response}```')
+                        log.write_log(f'{response}', client)
+                        await channel.send(f'```fix\nStopping Server```')
 
     # Lists out the exisiting instances
     if msg == '!instances':
