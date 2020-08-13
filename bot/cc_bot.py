@@ -2,6 +2,7 @@ import discord
 import os
 import subprocess
 import json
+import boto3
 
 import bot_controls
 import server_logging as log
@@ -28,11 +29,38 @@ async def on_message(message):
     if author == client.user or str(author) != bot_owner:
         return
     
+    # Outputs metrics of EC2 instance
     if msg == "!metrics":
         # metrics = os.popen('cat iostat').read()
         metrics = subprocess.check_output('iostat', shell=True).decode('utf-8')
         output = "Command Center Metrics\n" + metrics
         await channel.send(f'```fix\n{output}```')
+
+    # Starts the Minecraft server and outputs IP address
+    if msg == '!minecraft_start':
+        ec2 = boto3.resource('ec2', region_name='us-east-1')
+        instances = ec2.instances.all()
+        for instance in instances:
+            for tag in instance.tags:
+                if tag['Key'] == 'Name' and tag['Value'] == 'Minecraft Server':
+                    if instance.state['Name'] == 'running':
+                        await channel.send(f'```fix\nServer is already running.```')
+                    elif instance.state['Name'] == 'stopped':
+                        response = instance.start()
+                        await channel.send(f'```fix\n{response}```')
+    # Stops the Minecraft EC2 server
+    if msg == '!minecraft_stop':
+        ec2 = boto3.resource('ec2', region_name='us-east-1')
+        instances = ec2.instances.all()
+        for instance in instances:
+            for tag in instance.tags:
+                if tag['Key'] == 'Name' and tag['Value'] == 'Minecraft Server':
+                    if instance.state['Name'] == 'stopped':
+                        await channel.send(f'```fix\nServer is already stopped.```')
+                    elif instance.state['Name'] == 'running':
+                        response = instance.stop()
+                        await channel.send(f'```fix\n{response}```')
+
 
     if msg.startswith('!update'):
         msg_tokens = msg.split(' ')
