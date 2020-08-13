@@ -61,6 +61,14 @@ async def on_message(message):
                         response = instance.stop()
                         await channel.send(f'```fix\n{response}```')
 
+    if msg == '!instances':
+        ec2 = boto3.resource('ec2', region_name='us-east-1')
+        instances = ec2.instances.all()
+        output = ''
+        for instance in instances:
+            output += f'{instance.instance_id} | {instance.public_ip_address} | {instance.state}\n'
+        await channel.send(f'```fix\n{output}```')
+
 
     if msg.startswith('!update'):
         msg_tokens = msg.split(' ')
@@ -71,7 +79,7 @@ async def on_message(message):
 @client.event
 async def on_ready():
     global connected_guilds
-    bot_controls.start_bots()
+    # bot_controls.start_bots()
     print('Logged in as')
     print(client.user.name)
     print(client.user.id)
