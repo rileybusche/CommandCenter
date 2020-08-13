@@ -69,10 +69,11 @@ async def on_message(message):
         for instance in instances:
             if instance.state['Name'] != 'terminated':
                 name = ''
+                state = instance.state['Name']
                 for tag in instance.tags:
                     if tag['Key'] == 'Name':
                         name = tag['Value']
-                output += f'{name} | {instance.instance_id} | {instance.public_ip_address} | {instance.state['Name']}\n'
+                output += f'{name} | {instance.instance_id} | {instance.public_ip_address} | {state}\n'
         await channel.send(f'```fix\n{output}```')
 
 
