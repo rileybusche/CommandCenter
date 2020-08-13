@@ -4,7 +4,7 @@ import subprocess
 import json
 
 import bot_controls
-import logging as log
+import server_logging as log
 
 client = discord.Client()
 
@@ -12,6 +12,8 @@ bot_owner = "LiquidLuck#9488"
 
 with open('/home/ec2-user/creds/creds.json') as file:
     creds = json.load(file)
+# with open('creds.json') as file:
+#     creds = json.load(file)
 
 token = creds['Credentials']['Command Center']['Token']
 
