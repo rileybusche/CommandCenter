@@ -23,7 +23,6 @@ then
     PIDS=$(echo | pgrep -f "cc_bot.py")
     sudo kill -9 $PIDS
     sudo nohup python3 cc_bot.py &    
-fi
 elif [ $1 == "db" ]
 then
     echo "Updating DB"
