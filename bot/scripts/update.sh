@@ -30,5 +30,13 @@ then
     sudo git pull
     PIDS=$(echo | pgrep -f "dombot_bot.py")
     sudo kill -9 $PIDS
-    sudo nohup python3 dombot_bot.py &    
+    sudo nohup python3 dombot_bot.py &
+elif [ $1 == "spotify" ]
+then
+    echo "Updating Spotify"
+    cd /home/ec2-user/spotify-discord-bot/
+    sudo git pull
+    PIDS=$(echo | pgrep -f "SpotifyBot.ts")
+    sudo kill -9 $PIDS
+    npm start SpotifyBot.ts &    
 fi
