@@ -6,7 +6,7 @@ import boto3
 import time
 
 import bot_controls
-import server_logging as log
+# import server_logging as log
 
 client = discord.Client()
 
@@ -85,7 +85,9 @@ async def on_message(message):
         msg_tokens = msg.split(' ')
         bot_controls.update_bot(msg_tokens[1])
 
-        log.write_log(f'Updating {msg_tokens[1]}', client)
+        await channel.send(f'```fix\nUpdating {msg_tokens[1]}```')
+
+        # log.write_log(f'Updating {msg_tokens[1]}', client)
 
 @client.event
 async def on_ready():
