@@ -29,11 +29,11 @@ token = creds['Credentials']['Command Center']['Token']
 @client.event
 async def on_message(message):
 
-    author = message.author
+    author = str(message.author)
     channel = message.channel
     msg =  message.content.strip().lower()
 
-    if author == client.user or str(author) not in authorized_users:
+    if author == client.user or author not in authorized_users:
         return
     
     # Outputs metrics of EC2 instance
