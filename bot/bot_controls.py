@@ -9,4 +9,4 @@ def start_bots():
 
 def update_bot(name):
     cmd = f'sh ./scripts/update.sh {name}'
-    os.system(cmd)
+    return os.system(cmd)

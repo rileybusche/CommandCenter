@@ -83,11 +83,14 @@ async def on_message(message):
 
     if msg.startswith('!update'):
         msg_tokens = msg.split(' ')
-        bot_controls.update_bot(msg_tokens[1])
-
+        output = bot_controls.update_bot(msg_tokens[1])
+        print(output)
         await channel.send(f'```fix\nUpdating {msg_tokens[1]}```')
 
         # log.write_log(f'Updating {msg_tokens[1]}', client)
+
+    if msg == '!bot_close_cc':
+        await client.close()
 
 @client.event
 async def on_ready():
