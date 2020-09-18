@@ -94,7 +94,7 @@ async def on_message(message):
 
         # log.write_log(f'Updating {msg_tokens[1]}', client)
     
-    if msg.content.lower() == '!update spotify' and  author in authorized_users:
+    if message.content.lower() == '!update spotify' and  author in authorized_users:
         msg_tokens = msg.split(' ')
         output = bot_controls.update_bot(msg_tokens[1])
         print(output)
