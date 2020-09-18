@@ -94,7 +94,11 @@ async def on_message(message):
 
         # log.write_log(f'Updating {msg_tokens[1]}', client)
     
-    if msg == '!update spotify' and  author == authorized_users
+    if msg == '!update spotify' and  author in authorized_users:
+        msg_tokens = msg.split(' ')
+        output = bot_controls.update_bot(msg_tokens[1])
+        print(output)
+        await channel.send(f'```fix\nUpdating {msg_tokens[1]}```')
 
     if msg == '!bot_close_cc' and author == bot_owner:
         await client.close()
