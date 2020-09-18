@@ -38,5 +38,5 @@ then
     sudo git pull
     PIDS=$(echo | pgrep -f "SpotifyBot.ts")
     sudo kill -9 $PIDS
-    sudo npm start SpotifyBot.ts &    
+    npm start SpotifyBot.ts &    
 fi
