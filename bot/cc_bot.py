@@ -12,6 +12,12 @@ client = discord.Client()
 
 bot_owner = "LiquidLuck#9488"
 
+authorized_users = [
+    'LiquidLuck#9488',
+    'PoshPrincess7#5589',
+    'McNuggetMan#5562'
+]
+
 with open('/home/ec2-user/creds/creds.json') as file:
     creds = json.load(file)
 # with open('creds.json') as file:
@@ -27,7 +33,7 @@ async def on_message(message):
     channel = message.channel
     msg =  message.content.strip().lower()
 
-    if author == client.user or str(author) != bot_owner:
+    if author == client.user or str(author) not in authorized_users:
         return
     
     # Outputs metrics of EC2 instance
@@ -38,7 +44,7 @@ async def on_message(message):
         await channel.send(f'```fix\n{output}```')
 
     # Starts the Minecraft server and outputs IP address
-    if msg == '!minecraft_start':
+    if msg == '!minecraft_start' and author == bot_owner:
         ec2 = boto3.resource('ec2', region_name='us-east-1')
         instances = ec2.instances.all()
         for instance in instances:
@@ -48,11 +54,10 @@ async def on_message(message):
                         await channel.send(f'```fix\nServer is already running | IP : {instance.public_ip_address}```')
                     elif instance.state['Name'] == 'stopped':
                         response = instance.start()
-                        log.write_log(f'{response}', client)
                         time.sleep(5)
                         await channel.send(f'```fix\nIP : {instance.public_ip_address}```')
     # Stops the Minecraft EC2 server
-    if msg == '!minecraft_stop':
+    if msg == '!minecraft_stop' and author == bot_owner:
         ec2 = boto3.resource('ec2', region_name='us-east-1')
         instances = ec2.instances.all()
         for instance in instances:
@@ -62,11 +67,11 @@ async def on_message(message):
                         await channel.send(f'```fix\nServer is already stopped.```')
                     elif instance.state['Name'] == 'running':
                         response = instance.stop()
-                        log.write_log(f'{response}', client)
+                        # log.write_log(f'{response}', client)
                         await channel.send(f'```fix\nStopping Server```')
 
     # Lists out the exisiting instances
-    if msg == '!instances':
+    if msg == '!instances' and author == bot_owner:
         ec2 = boto3.resource('ec2', region_name='us-east-1')
         instances = ec2.instances.all()
         output = ''
@@ -81,15 +86,17 @@ async def on_message(message):
         await channel.send(f'```fix\n{output}```')
 
 
-    if msg.startswith('!update'):
+    if msg.startswith('!update') and author == bot_owner:
         msg_tokens = msg.split(' ')
         output = bot_controls.update_bot(msg_tokens[1])
         print(output)
         await channel.send(f'```fix\nUpdating {msg_tokens[1]}```')
 
         # log.write_log(f'Updating {msg_tokens[1]}', client)
+    
+    if msg == '!update spotify' and  author == authorized_users
 
-    if msg == '!bot_close_cc':
+    if msg == '!bot_close_cc' and author == bot_owner:
         await client.close()
 
 @client.event
