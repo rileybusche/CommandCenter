@@ -39,5 +39,13 @@ then
     PIDS=$(echo | pgrep -f "SpotifyBot.ts")
     sudo kill -9 $PIDS
     source ~/.nvm/nvm.sh
-    npm start SpotifyBot.ts &    
+    npm start SpotifyBot.ts &
+elif [ $1 == "hss" ]
+then
+    echo "Updating Hard Stuck Silver"
+    cd /home/ec2-user/HardStuckSilver/
+    sudo git pull
+    PIDS=$(echo | pgrep -f "hss_bot.py")
+    sudo kill -9 $PIDS
+    sudo nohup python3 hss_bot.py &
 fi
