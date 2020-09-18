@@ -92,6 +92,8 @@ async def on_message(message):
         print(output)
         await channel.send(f'```fix\nUpdating {msg_tokens[1]}```')
 
+        return
+
         # log.write_log(f'Updating {msg_tokens[1]}', client)
     
     if message.content.lower() == '!update spotify' and  author in authorized_users:
