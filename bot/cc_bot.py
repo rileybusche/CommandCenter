@@ -55,7 +55,7 @@ async def on_message(message):
                     elif instance.state['Name'] == 'stopped':
                         instance.start()
                         while instance.public_ip_address == None:
-                            time.sleep(1)
+                            time.sleep(10)
                         await channel.send(f'```fix\nIP : {instance.public_ip_address}```')
     # Stops the Minecraft EC2 server
     if msg == '!minecraft_stop' and author == bot_owner:
